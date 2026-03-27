@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mimn Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/jpg" href="Logo.jpg">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              page: "#2e3036",
+              panel: "#1f252c",
+              panelSoft: "#242b33",
+              accent: "#10d7b3",
+              accentSoft: "#0fc4a3",
+              textMain: "#f4f7fb",
+              textMuted: "#9ea7b3",
+            },
+            boxShadow: {
+              glow: "0 18px 40px rgba(16, 215, 179, 0.18)",
+              card: "0 28px 60px rgba(0, 0, 0, 0.28)",
+            },
+            fontFamily: {
+              sans: ["Segoe UI", "Tahoma", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #2e3036;
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700' viewBox='0 0 900 700'%3E%3Cg fill='none' stroke='%2310d7b3' stroke-opacity='0.82' stroke-width='2'%3E%3Cpath d='M-60 120C70 20 200 80 330 10s260-30 390 40 260 40 390-40'/%3E%3Cpath d='M-90 210c130-100 260-40 390-110s260-30 390 40 260 40 390-40'/%3E%3Cpath d='M-120 300c130-100 260-40 390-110s260-30 390 40 260 40 390-40'/%3E%3Cpath d='M-150 390c130-100 260-40 390-110s260-30 390 40 260 40 390-40'/%3E%3Cpath d='M-180 480c130-100 260-40 390-110s260-30 390 40 260 40 390-40'/%3E%3Cpath d='M-210 570c130-100 260-40 390-110s260-30 390 40 260 40 390-40'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 950px auto;
+      }
+
+      .hex-shape {
+        clip-path: polygon(25% 6%, 75% 6%, 100% 30%, 100% 70%, 75% 94%, 25% 94%, 0 70%, 0 30%);
+      }
+
+      .panel-card {
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      }
+
+      .panel-card:hover {
+        transform: translateY(-6px);
+      }
+
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #10d7b3;
+        transform: translateX(-50%);
+        transition: width 0.25s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .modal-open {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="font-sans text-textMain">
+    <div class="mx-auto max-w-[1180px] px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-10 flex items-center gap-5">
+        <div class="h-16 w-16">
+          <svg viewBox="0 0 64 64" class="h-full w-full fill-white">
+            <path d="M31.5 3 8 51.5h15.1l8.4-18.2L40 51.5H56L31.5 3Z" />
+            <path fill="#10d7b3" d="M28 28.2 16.8 51.5H32l7.8-16.8L28 28.2Z" />
+          </svg>
+        </div>
+        <h1 class="text-4xl font-bold sm:text-5xl">Mimn Portfolio</h1>
+      </div>
+
+      <main class="space-y-10">
+        <section class="rounded-[2rem] border border-white/5 bg-panel px-6 py-7 shadow-card sm:px-10 sm:py-8">
+          <div class="mb-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10">
+                <svg viewBox="0 0 64 64" class="h-full w-full fill-accent">
+                  <path d="M31.5 3 8 51.5h15.1l8.4-18.2L40 51.5H56L31.5 3Z" />
+                </svg>
+              </div>
+              <span class="text-xl font-semibold">Portfolio</span>
+            </div>
+            <nav class="flex flex-wrap items-center gap-6 text-sm">
+              <a class="nav-link active text-accent" href="#home">Home</a>
+              <a class="nav-link text-white/90" href="#skills">Skills</a>
+              <button id="openResumeModal" class="nav-link text-white/90" type="button">Resume</button>
+            </nav>
+          </div>
+
+          <div id="home" class="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <div class="space-y-6">
+              <div>
+                <p class="text-4xl font-light">Hello, <span class="text-accent">I'm</span></p>
+                <h2 class="mt-3 text-4xl font-bold text-accent sm:text-5xl">Mohamed Nadi</h2>
+                <p class="mt-3 text-2xl font-semibold text-white/95">Software Engineer | Front-end Developer | UI/UX Designer</p>
+              </div>
+              <p class="max-w-xl text-base leading-8 text-textMuted">
+                I am a passionate software engineer with expertise in front-end development and UI/UX design. I create engaging and user-friendly digital experiences that blend creativity with functionality.
+              </p>
+              <button id="openContactModal" class="panel-card rounded-xl bg-accent px-7 py-3 text-lg font-semibold text-page shadow-glow" type="button">
+                Let's Talk
+              </button>
+              <div class="pt-8">
+                <p class="mb-4 text-lg text-white/90">Check Out My</p>
+                <div class="flex items-center gap-4">
+                  <a class="panel-card flex h-12 w-12 items-center justify-center rounded-full bg-accent/20 text-accent" target="_blank" href="https://github.com/mimn20004-cmyk" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.699-2.782.605-3.369-1.344-3.369-1.344-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.004.071 1.532 1.033 1.532 1.033.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.55 9.55 0 0 1 2.504.337c1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.481A10.019 10.019 0 0 0 22 12.017C22 6.484 17.523 2 12 2Z"/></svg>
+                  </a>
+                  <a class="panel-card flex h-12 w-12 items-center justify-center rounded-full bg-accent/20 text-accent" target="_blank" href="#" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A1.97 1.97 0 0 0 3.3 4.97c0 1.08.86 1.97 1.95 1.97h.02a1.97 1.97 0 1 0-.02-3.94ZM20.44 13.02c0-3.05-1.63-4.47-3.81-4.47-1.75 0-2.53.96-2.97 1.64V8.5h-3.38c.04 1.12 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.88-1.39 1.9-1.39 1.34 0 1.88 1.04 1.88 2.56V20H21v-6.98h-.56Z"/></svg>
+                  </a>
+                  <a class="panel-card flex h-12 w-12 items-center justify-center rounded-full bg-accent/20 text-accent" target="_blank" href="https://www.instagram.com/m.imn20004?igsh=dXYyc2I2d2ptbXcw&utm_source=qr" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm10.75 1.65a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.1A2.9 2.9 0 1 0 12 15a2.9 2.9 0 0 0 0-5.8Z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative flex justify-center lg:justify-end">
+              <div class="hex-shape absolute top-8 h-[320px] w-[320px] bg-accent shadow-glow sm:h-[410px] sm:w-[410px]"></div>
+              <img
+                src="Mimn.jpg"
+                alt="Portrait"
+                class="relative z-10 w-[330px] rounded-[2rem] object-cover drop-shadow-[0_18px_28px_rgba(0,0,0,0.3)] sm:w-[430px]"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section id="resume" class="rounded-[2rem] bg-[#1b2027] px-6 py-12 shadow-card sm:px-10">
+          <p class="text-xl text-white/90">My <span class="text-accent">services</span></p>
+          <h2 class="mt-3 text-4xl font-bold sm:text-5xl">What I Do</h2>
+          <div class="mt-12 grid gap-6 md:grid-cols-3">
+            <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 fill-current"><path d="M4 4h16v11H4V4Zm2 2v7h12V6H6Zm-2 11h16v2H4v-2Zm2 3h12v2H6v-2Z"/></svg>
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">Software Engineer</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">I design and build scalable software solutions using modern programming languages and frameworks.</p>
+            </article>
+            <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 fill-current"><path d="M3 5h18v11H3V5Zm2 2v7h14V7H5Zm3 11h8v2H8v-2Z"/></svg>
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">Front-end Developer</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">I build responsive and interactive web applications using modern JavaScript frameworks and libraries.</p>
+            </article>
+            <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 fill-current"><path d="M12 2 4 6.5v11L12 22l8-4.5v-11L12 2Zm0 2.4 5.8 3.26L12 10.9 6.2 7.66 12 4.4Zm-6 4.96 5 2.8v5.45l-5-2.82V9.36Zm7 8.27v-5.45l5-2.8v5.45l-5 2.8Z"/></svg>
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">UI/UX Designer</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">I create intuitive and engaging user experiences for digital products.</p>
+            </article>
+            
+          </div>
+        </section>
+
+        <section id="skills" class="rounded-[2rem] bg-panel px-6 py-12 shadow-card sm:px-10">
+          <div class="text-center">
+            <h2 class="text-4xl font-bold text-white">Learned <span class="text-accent">Languages</span></h2>
+            <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-textMuted">
+              These are the main languages and technologies I learned and used while building
+              responsive and interactive web experiences.
+            </p>
+          </div>
+          <div class="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+             <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent text-2xl font-bold">
+                C++
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">C++</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">
+                Efficient and robust software development for performance-critical applications.
+              </p>
+            </article>
+            <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent text-2xl font-bold">
+                H
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">HTML5</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">
+                Semantic structure and accessible page layouts for modern web interfaces.
+              </p>
+            </article>
+            <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent text-2xl font-bold">
+                C
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">CSS3</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">
+                Styling, layout systems, animations, and responsive visual design.
+              </p>
+            </article>
+            <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent text-2xl font-bold">
+                J
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">JavaScript</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">
+                Interactivity, DOM control, and dynamic frontend behavior.
+              </p>
+            </article>
+            <article class="panel-card rounded-[1.6rem] bg-panelSoft p-8 text-center shadow-card">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/40 text-accent text-2xl font-bold">
+                T
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold">Tailwind CSS</h3>
+              <p class="mt-4 text-base leading-7 text-textMuted">
+                Utility-first styling for fast, consistent, and responsive UI development.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects" class="rounded-[2rem] bg-[#181d24] px-6 py-12 shadow-card sm:px-10">
+          <div class="mb-10">
+            <p class="text-sm uppercase tracking-[0.25em] text-accent">Projects</p>
+            <h2 class="mt-3 text-4xl font-bold">Things I Built</h2>
+            <p class="mt-4 max-w-2xl text-base leading-8 text-textMuted">
+              Each card below includes the project name, a short description, the technologies used,
+              a preview image, and a button linked to the live project or repository.
+            </p>
+          </div>
+          <div id="projectsGrid" class="grid gap-6 lg:grid-cols-2"></div>
+        </section>
+
+        <footer class="rounded-[2rem] bg-panel px-6 py-8 shadow-card sm:px-10">
+          <div class="grid gap-8 lg:grid-cols-[1fr_1fr_0.8fr]">
+            <div>
+              <p class="text-2xl font-semibold">Mohamed Nadi</p>
+              <p class="mt-4 max-w-xs text-sm leading-7 text-textMuted">
+                I am a dedicated Web Developer with a strong foundation in Computer Science and Information Technology.
+              </p>
+            </div>
+            <div>
+              <p class="text-lg font-semibold">Contact Info</p>
+              <p class="mt-4 text-sm text-textMuted">(+20) 01025457419</p>
+              <p class="mt-2 text-sm text-textMuted">m.imn20004@gmail.com</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-sm text-textMuted">
+              <a class="panel-card hover:text-accent" href="#home">Home</a>
+              <a class="panel-card hover:text-accent" href="#skills">Skills</a>
+              <a class="panel-card hover:text-accent" href="#resume">Resume</a>
+              <a class="panel-card hover:text-accent" href="#">About</a>
+              <a class="panel-card hover:text-accent" target="_blank" href="https://www.instagram.com/m.imn20004?igsh=dXYyc2I2d2ptbXcw&utm_source=qr">Instagram</a>
+              <a class="panel-card hover:text-accent" target="_blank" href="https://www.facebook.com/share/1AmApjVuY9/?mibextid=wwXIfr">Facebook</a>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
+      <div class="w-full max-w-2xl rounded-[2rem] border border-white/10 bg-panel p-6 shadow-card sm:p-8">
+        <div class="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <p class="text-sm uppercase tracking-[0.25em] text-accent">Contact</p>
+            <h2 class="mt-3 text-3xl font-bold">Let's work together</h2>
+            <p class="mt-3 text-sm leading-7 text-textMuted">
+              Fill in the form and I will get back to you as soon as possible.
+            </p>
+          </div>
+          <button class="close-modal panel-card rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white" data-close="contactModal" type="button">Close</button>
+        </div>
+        <form id="contactForm" class="grid gap-5 md:grid-cols-2" netlify>
+          <input type="hidden" name="_subject" value="New Portfolio Contact Message" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+          <label class="block">
+            <span class="mb-2 block text-sm text-white/90">Full Name</span>
+            <input class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-textMuted focus:border-accent" type="text" name="name" placeholder="Your full name" required />
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-sm text-white/90">Email Address</span>
+            <input class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-textMuted focus:border-accent" type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label class="block md:col-span-2">
+            <span class="mb-2 block text-sm text-white/90">Subject</span>
+            <input class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-textMuted focus:border-accent" type="text" name="project_subject" placeholder="What do you want to build?" required />
+          </label>
+          <label class="block md:col-span-2">
+            <span class="mb-2 block text-sm text-white/90">Message</span>
+            <textarea class="min-h-[140px] w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-textMuted focus:border-accent" name="message" placeholder="Tell me about your idea..." required></textarea>
+          </label>
+          <button id="contactSubmit" class="panel-card md:col-span-2 rounded-2xl bg-accent px-6 py-3 text-lg font-semibold text-page shadow-glow" type="submit">
+            Send Message
+          </button>
+          <p id="contactFormStatus" class="md:col-span-2 text-sm text-textMuted"></p>
+        </form>
+      </div>
+    </div>
+
+    <div id="resumeModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
+      <div class="w-full max-w-3xl rounded-[2rem] border border-white/10 bg-panel p-6 shadow-card sm:p-8">
+        <div class="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <p class="text-sm uppercase tracking-[0.25em] text-accent">Resume</p>
+            <h2 class="mt-3 text-3xl font-bold">Mohamed Nadi</h2>
+            <p class="mt-3 text-sm leading-7 text-textMuted">
+              Software Engineer focused on front-end development, UI/UX, and modern responsive interfaces.
+            </p>
+          </div>
+          <button class="close-modal panel-card rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white" data-close="resumeModal" type="button">Close</button>
+        </div>
+        <div class="grid gap-6 md:grid-cols-[1fr_0.9fr]">
+          <div class="space-y-5">
+            <div class="rounded-[1.5rem] bg-panelSoft p-5">
+              <h3 class="text-xl font-semibold text-white">Profile</h3>
+              <p class="mt-3 text-sm leading-7 text-textMuted">
+                Passionate software engineer with experience in creating clean, interactive, and user-centered digital products.
+              </p>
+            </div>
+            <div class="rounded-[1.5rem] bg-panelSoft p-5">
+              <h3 class="text-xl font-semibold text-white">Core Skills</h3>
+              <div class="mt-3 flex flex-wrap gap-2 text-sm">
+                <span class="rounded-full bg-accent/15 px-3 py-2 text-accent">C++</span>
+                <span class="rounded-full bg-accent/15 px-3 py-2 text-accent">HTML5</span>
+                <span class="rounded-full bg-accent/15 px-3 py-2 text-accent">CSS3</span>
+                <span class="rounded-full bg-accent/15 px-3 py-2 text-accent">JavaScript</span>
+                <span class="rounded-full bg-accent/15 px-3 py-2 text-accent">Tailwind CSS</span>
+                <span class="rounded-full bg-accent/15 px-3 py-2 text-accent">UI/UX</span>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-5">
+            <div class="rounded-[1.5rem] bg-panelSoft p-5">
+              <h3 class="text-xl font-semibold text-white">Contact</h3>
+              <p class="mt-3 text-sm text-textMuted">m.imn20004@gmail.com</p>
+              <p class="mt-2 text-sm text-textMuted">(+20) 01025457419</p>
+            </div>
+            <div class="rounded-[1.5rem] bg-panelSoft p-5">
+              <h3 class="text-xl font-semibold text-white">Download CV</h3>
+              <!-- <p class="mt-3 text-sm leading-7 text-textMuted">
+                Replace the link below with your real CV file path when you are ready.
+              </p> -->
+              <a href="Mohamed_Nadi_CV.docx" class="panel-card mt-5 inline-flex rounded-xl bg-accent px-5 py-3 font-semibold text-page shadow-glow">Download CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
